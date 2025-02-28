@@ -14,3 +14,7 @@ a {
 .gray {
   color: #49557e;
 }
+
+@theme {
+  --tomato: #ff6347;
+}
