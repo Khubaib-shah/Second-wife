@@ -32,4 +32,12 @@ a {
   .animate-fadeIn {
     animation: fadeIn 0.3s ease-in-out;
   }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for Firefox */
+  .scroll-hidden {
+    scrollbar-width: none;
+  }
 }
