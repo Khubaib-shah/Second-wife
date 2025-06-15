@@ -4,7 +4,7 @@ import { menu_list } from "../assets/assets";
 const ExploreMenu = ({ category, setCategory }) => {
   return (
     <div className="flex gap-5 flex-col ">
-      <h1 className="text-[#262626] font-medium  ">Explore Our menu</h1>
+      <h1 className="text-[#262626] font-medium">Explore Our menu</h1>
       <p className="max-w-[60%] text-[#808080]">
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sit sequi
         mollitia, fuga, consequuntur totam repellendus saepe, et doloremque
