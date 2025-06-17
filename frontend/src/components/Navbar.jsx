@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { assets } from "../assets/assets";
+import { Link } from "react-router-dom";
+import { StoreContext } from "../context/StoreContext";
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
 
+  const { getTotalCartAmount } = useContext(StoreContext);
   const navItems = ["home", "menu", "mobile-app", "contact-us"];
 
   return (
@@ -39,13 +42,21 @@ const Navbar = ({ setShowLogin }) => {
         />
 
         <div className="relative">
-          <img
-            src={assets.basket_icon}
-            alt="basket"
-            className="w-6 max-[900px]:w-5 max-[1050px]:w-[22px]"
-          />
+          <Link to="/cart">
+            <img
+              src={assets.basket_icon}
+              alt="basket"
+              className="w-6 max-[900px]:w-5 max-[1050px]:w-[22px]"
+            />
+          </Link>
 
-          <div className="absolute size-3 bg-[var(--tomato)] rounded-full -top-2 -right-2"></div>
+          <div
+            className={
+              getTotalCartAmount()
+                ? "absolute size-3 bg-[var(--tomato)] rounded-full -top-2 -right-2"
+                : ""
+            }
+          ></div>
         </div>
         <button
           className="bg-transparent text-base border border-[var(--tomato)] py-2.5 max-[900px]:py-1.5 max-[1050px]:py-[8px] px-7 max-[900px]:px-5 max-[1050px]:px-6 rounded-full cursor-pointer hover:bg-[#fff4f2]"

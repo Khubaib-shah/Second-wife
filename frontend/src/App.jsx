@@ -11,9 +11,9 @@ const App = () => {
 
   return (
     <>
-      {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
+      {showLogin && <LoginPopup setShowLogin={setShowLogin} />}
       <Navbar setShowLogin={setShowLogin} />
-      <div className="w-[80%] mx-auto">
+      <div className="w-[80%]  mx-auto">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
