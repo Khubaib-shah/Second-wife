@@ -18,9 +18,7 @@ const LoginPopup = ({ setShowLogin }) => {
           />
         </div>
         <div className="flex flex-col gap-5">
-          {currState === "Login" ? (
-            <></>
-          ) : (
+          {currState === "Sign Up" && (
             <input
               type="text"
               placeholder="Your Name"
