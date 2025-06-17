@@ -6,10 +6,7 @@ const Footer = () => {
       className="text-[#d9d9d9] bg-[#323232] flex flex-col items-center gap-5 py-[20px] px-[8vw] pt-20 mt-25"
       id="footer"
     >
-      {/* footer content  */}
-
-      <div className="w-full grid grid-cols-4 gap-20">
-        {/* footer left  */}
+      <div className="w-full grid grid-cols-4 gap-20 max-[750px]:flex-col max-[750px]:flex max-lg:gap-9">
         <div className="flex flex-col items-start gap-5 col-span-2">
           <img src={assets.logo} alt="Logo" />
 
@@ -26,7 +23,6 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* footer center  */}
         <div className="flex flex-col items-start gap-5">
           <h2 className="text-white font-bold">COMPANY</h2>
           <ul>
@@ -36,7 +32,7 @@ const Footer = () => {
             <li className="mb-2.5 cursor-pointer">Privacy Policy</li>
           </ul>
         </div>
-        {/* footer right  */}
+
         <div className="flex flex-col items-start gap-5">
           <h2 className="text-white font-bold">GET IN TOUCH</h2>
           <ul>
@@ -45,6 +41,7 @@ const Footer = () => {
           </ul>
         </div>
       </div>
+
       <hr className="h-0.5 w-full my-5 mx-0 bg-gray-400 border-none" />
 
       <p>Copyright 2025 @ Toamato.com - All Right reserved.</p>

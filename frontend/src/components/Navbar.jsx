@@ -7,10 +7,14 @@ const Navbar = () => {
   const navItems = ["home", "menu", "mobile-app", "contact-us"];
 
   return (
-    <div className="py-5 px-0 flex items-center justify-between">
-      <img src={assets.logo} alt="logo" className="w-36" />
+    <div className="w-[80%] mx-auto py-5 px-0 flex items-center justify-between">
+      <img
+        src={assets.logo}
+        alt="logo"
+        className="w-36 max-[900px]:w-28 max-[1050px]:w-32"
+      />
 
-      <nav className="flex list-none gap-5 text-lg">
+      <nav className="flex list-none gap-6 max-[750px]:hidden max-[900px]:gap-3.5 max-[1050px]:gap-5 max-[900px]:text-base max-[1050px]:text-[17px] text-lg">
         {navItems.map((item) => (
           <li
             key={item}
@@ -27,15 +31,23 @@ const Navbar = () => {
         ))}
       </nav>
 
-      <div className="flex items-center gap-10">
-        <img src={assets.search_icon} alt="search" />
+      <div className="flex items-center gap-9 max-[900px]:gap-5 max-[1050px]:gap-8">
+        <img
+          src={assets.search_icon}
+          alt="search"
+          className="w-6 max-[900px]:w-5 max-[1050px]:w-[22px]"
+        />
 
         <div className="relative">
-          <img src={assets.basket_icon} alt="basket" />
+          <img
+            src={assets.basket_icon}
+            alt="basket"
+            className="w-6 max-[900px]:w-5 max-[1050px]:w-[22px]"
+          />
 
           <div className="absolute size-3 bg-[var(--tomato)] rounded-full -top-2 -right-2"></div>
         </div>
-        <button className="bg-transparent text-base border border-[var(--tomato)] py-[10px] px-7 rounded-full cursor-pointer hover:bg-[#fff4f2]">
+        <button className="bg-transparent text-base border border-[var(--tomato)] py-2.5 max-[900px]:py-1.5 max-[1050px]:py-[8px] px-7 max-[900px]:px-5 max-[1050px]:px-6 rounded-full cursor-pointer hover:bg-[#fff4f2]">
           Sign In
         </button>
       </div>
