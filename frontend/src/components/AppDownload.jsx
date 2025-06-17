@@ -4,7 +4,7 @@ const AppDownload = () => {
   return (
     <div
       className="m-auto mt-25 text-[max(3vw,20px)] text-center font-semibold"
-      id="app-download"
+      id="mobile-app"
     >
       <p>
         For Better Experience Download <br /> Tomato App

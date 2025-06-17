@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { assets } from "../assets/assets";
-
 const Navbar = () => {
   const [menu, setMenu] = useState("home");
 
@@ -16,7 +15,8 @@ const Navbar = () => {
 
       <nav className="flex list-none gap-6 max-[750px]:hidden max-[900px]:gap-3.5 max-[1050px]:gap-5 max-[900px]:text-base max-[1050px]:text-[17px] text-lg">
         {navItems.map((item) => (
-          <li
+          <a
+            href={item === "home" ? "/" : `#${item}`}
             key={item}
             className="relative cursor-pointer capitalize pb-1"
             onClick={() => setMenu(item)}
@@ -27,7 +27,7 @@ const Navbar = () => {
                 menu === item ? "scale-x-100" : "scale-x-0"
               }`}
             />
-          </li>
+          </a>
         ))}
       </nav>
 

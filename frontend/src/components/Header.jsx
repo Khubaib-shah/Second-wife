@@ -14,9 +14,12 @@ const Header = () => {
           consectetur adipisicing elit. Reiciendis eum quasi veniam placeat
           fugiat? coam placeat fugiat?{" "}
         </p>
-        <button className="border-none gray bg-white rounded-full font-medium py-[1vw] px-[2.3vw]">
+        <a
+          href="#food_display"
+          className="border-none gray bg-white rounded-full font-medium py-[1vw] px-[2.3vw]"
+        >
           View Menu
-        </button>
+        </a>
       </div>
     </div>
   );
