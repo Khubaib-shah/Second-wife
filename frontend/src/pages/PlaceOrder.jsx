@@ -1,12 +1,30 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { StoreContext } from "../context/StoreContext";
+import toast from "react-hot-toast";
 
 const PlaceOrder = () => {
   const { getTotalCartAmount } = useContext(StoreContext);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    emailAddress: "",
+    street: "",
+    city: "",
+    state: "",
+    zipCode: "",
+    country: "",
+    phoneNumber: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    getTotalCartAmount() < 1
+      ? toast("Oops! Nothing in your cart yet.")
+      : toast.success("Thanks for your order! We're on it.");
+
+    console.log(formData);
   };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -16,21 +34,93 @@ const PlaceOrder = () => {
         <p className="text-3xl font-semibold mb-12">Delivery Information</p>
 
         <div className="multi-fields">
-          <input type="text" placeholder="First name" />
-          <input type="text" placeholder="Last name" />
+          <input
+            type="text"
+            placeholder="First name"
+            value={formData.firstName}
+            name="firstName"
+            onChange={(e) =>
+              setFormData({ ...formData, [e.target.name]: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            placeholder="Last name"
+            value={formData.lastName}
+            name="lastName"
+            onChange={(e) =>
+              setFormData({ ...formData, [e.target.name]: e.target.value })
+            }
+          />
         </div>
-        <input type="text" placeholder="Email address" />
-        <input type="text" placeholder="Street" />
+        <input
+          type="text"
+          placeholder="Email address"
+          value={formData.emailAddress}
+          name="emailAddress"
+          onChange={(e) =>
+            setFormData({ ...formData, [e.target.name]: e.target.value })
+          }
+        />
+        <input
+          type="text"
+          placeholder="Street"
+          value={formData.street}
+          name="street"
+          onChange={(e) =>
+            setFormData({ ...formData, [e.target.name]: e.target.value })
+          }
+        />
 
         <div className="multi-fields">
-          <input type="text" placeholder="City" />
-          <input type="text" placeholder="State" />
+          <input
+            type="text"
+            placeholder="City"
+            value={formData.city}
+            name="city"
+            onChange={(e) =>
+              setFormData({ ...formData, [e.target.name]: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            placeholder="State"
+            value={formData.state}
+            name="state"
+            onChange={(e) =>
+              setFormData({ ...formData, [e.target.name]: e.target.value })
+            }
+          />
         </div>
         <div className="multi-fields">
-          <input type="text" placeholder="Zip code" />
-          <input type="text" placeholder="Country" />
+          <input
+            type="text"
+            placeholder="Zip code"
+            value={formData.zipCode}
+            name="zipCode"
+            onChange={(e) =>
+              setFormData({ ...formData, [e.target.name]: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            placeholder="Country"
+            value={formData.country}
+            name="country"
+            onChange={(e) =>
+              setFormData({ ...formData, [e.target.name]: e.target.value })
+            }
+          />
         </div>
-        <input type="text" placeholder="Phone" />
+        <input
+          type="text"
+          placeholder="Phone"
+          value={formData.phoneNumber}
+          name="phoneNumber"
+          onChange={(e) =>
+            setFormData({ ...formData, [e.target.name]: e.target.value })
+          }
+        />
       </div>
 
       <div className="place-order-right">
@@ -55,7 +145,10 @@ const PlaceOrder = () => {
               </b>
             </div>
           </div>
-          <button className="border-0 text-white bg-orange-400 w-[max(15vw,200px)] py-3 px-0 rounded-sm cursor-pointer mt-7">
+          <button
+            type="submit"
+            className="border-0 text-white bg-orange-400 w-[max(15vw,200px)] py-3 px-0 rounded-sm cursor-pointer mt-7"
+          >
             Proceed to Payment
           </button>
         </div>

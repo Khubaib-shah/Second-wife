@@ -6,7 +6,6 @@ import AppDownload from "../components/AppDownload";
 
 const Home = () => {
   const [category, setCategory] = useState("All");
-  console.log(category);
   return (
     <div>
       <Header />

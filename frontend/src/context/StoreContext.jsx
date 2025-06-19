@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { food_list } from "../assets/assets";
-
+import toast from "react-hot-toast";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = ({ children }) => {
@@ -13,7 +13,8 @@ const StoreContextProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addToCart = (itemId) => {
+  const addToCart = (itemId, name) => {
+    toast.success(name + "! " + "Nice! It's in your cart.");
     setCartItems((prev) => ({
       ...prev,
       [itemId]: (prev[itemId] || 0) + 1,

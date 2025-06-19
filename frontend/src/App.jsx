@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import LoginPopup from "./components/LoginPopup";
 import { useState } from "react";
+import { Toaster } from "react-hot-toast";
 const App = () => {
   const [showLogin, setShowLogin] = useState(false);
 
@@ -20,6 +21,9 @@ const App = () => {
           <Route path="/order" element={<PlaceOrder />} />
         </Routes>
       </div>
+
+      <Toaster />
+
       <Footer />
     </>
   );

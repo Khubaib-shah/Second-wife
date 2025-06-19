@@ -20,7 +20,7 @@ const FoodItem = ({ item }) => {
             src={assets.add_icon_white}
             alt="add"
             className="w-9 absolute bottom-3.5 right-3.5 cursor-pointer rounded-full transition hover:scale-110"
-            onClick={() => addToCart(_id)}
+            onClick={() => addToCart(_id, name)}
           />
         ) : (
           <div className="absolute bottom-3.5 right-3.5 flex items-center gap-2.5 p-2 rounded-full bg-white shadow-md">
@@ -35,7 +35,7 @@ const FoodItem = ({ item }) => {
               src={assets.add_icon_green}
               alt="add"
               className="w-8 cursor-pointer transition hover:scale-110"
-              onClick={() => addToCart(_id)}
+              onClick={() => addToCart(_id, name)}
             />
           </div>
         )}

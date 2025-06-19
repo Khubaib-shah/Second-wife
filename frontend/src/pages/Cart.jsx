@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { StoreContext } from "../context/StoreContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 const Cart = () => {
   const { food_list, cartItems, removeFromCart, getTotalCartAmount } =
     useContext(StoreContext);
   const navigate = useNavigate();
 
-  console.log(getTotalCartAmount());
+  getTotalCartAmount() < 1 && toast("Oops! Nothing in your cart yet.");
+
   return (
     <div className="cart">
       <div className="cart-item">
