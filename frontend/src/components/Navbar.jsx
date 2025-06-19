@@ -1,12 +1,18 @@
 import { useContext, useState } from "react";
 import { assets } from "../assets/assets";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { StoreContext } from "../context/StoreContext";
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
-
   const { getTotalCartAmount } = useContext(StoreContext);
+
   const navItems = ["home", "menu", "mobile-app", "contact-us"];
+  const { pathname } = useLocation();
+  const isCheckoutPage = pathname !== "/";
+
+  const location = isCheckoutPage
+    ? navItems.filter((item) => item !== "menu" && item !== "mobile-app")
+    : navItems;
 
   return (
     <div className="w-[80%] mx-auto py-5 px-0 flex items-center justify-between">
@@ -17,21 +23,23 @@ const Navbar = ({ setShowLogin }) => {
       />
 
       <nav className="flex list-none gap-6 max-[750px]:hidden max-[900px]:gap-3.5 max-[1050px]:gap-5 max-[900px]:text-base max-[1050px]:text-[17px] text-lg">
-        {navItems.map((item) => (
-          <a
-            href={item === "home" ? "/" : `#${item}`}
-            key={item}
-            className="relative cursor-pointer capitalize pb-1"
-            onClick={() => setMenu(item)}
-          >
-            {item.replace("-", " ")}
-            <span
-              className={`absolute left-0 bottom-0 h-0.5 w-full bg-black transition-all duration-300 origin-left ${
-                menu === item ? "scale-x-100" : "scale-x-0"
-              }`}
-            />
-          </a>
-        ))}
+        {location.map((item) => {
+          return (
+            <a
+              href={item === "home" ? "/" : `#${item}`}
+              key={item}
+              className="relative cursor-pointer capitalize pb-1"
+              onClick={() => setMenu(item)}
+            >
+              {item.replace("-", " ")}
+              <span
+                className={`absolute left-0 bottom-0 h-0.5 w-full bg-black transition-all duration-300 origin-left ${
+                  menu === item ? "scale-x-100" : "scale-x-0"
+                }`}
+              />
+            </a>
+          );
+        })}
       </nav>
 
       <div className="flex items-center gap-9 max-[900px]:gap-5 max-[1050px]:gap-8">

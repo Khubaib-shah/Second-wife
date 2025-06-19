@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { StoreContext } from "../context/StoreContext";
+import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const { food_list, cartItems, removeFromCart, getTotalCartAmount } =
     useContext(StoreContext);
+  const navigate = useNavigate();
 
   console.log(getTotalCartAmount());
   return (
@@ -22,37 +24,43 @@ const Cart = () => {
         <br />
         <hr />
 
-        {food_list.map((item, index) => {
-          if (cartItems[item._id] > 0) {
-            return (
-              <div key={item._id}>
-                <div
-                  className="grid grid-cols-12 items-center text-gray-500 text-[max(1vw.,12px)] my-2.5 mx-0 "
-                  style={{ gridTemplateColumns: "1fr 1.5fr 1fr 1fr 1fr 0.5fr" }}
-                >
-                  <img src={item.image} alt="Cart items" className="w-12" />
-
-                  <p>{item.name}</p>
-                  <p>${item.price}</p>
-                  <p>{cartItems[item._id]}</p>
-                  <p>${item.price * cartItems[item._id]}</p>
-                  <p
-                    className="cursor-pointer"
-                    onClick={() => removeFromCart(item._id)}
+        {getTotalCartAmount() < 1 ? (
+          <h2>Start adding delicious items to your cart!</h2>
+        ) : (
+          food_list.map((item, index) => {
+            if (cartItems[item._id] > 0) {
+              return (
+                <div key={item._id}>
+                  <div
+                    className="grid grid-cols-12 items-center text-gray-500 text-[max(1vw.,12px)] my-2.5 mx-0 "
+                    style={{
+                      gridTemplateColumns: "1fr 1.5fr 1fr 1fr 1fr 0.5fr",
+                    }}
                   >
-                    X
-                  </p>
+                    <img src={item.image} alt="Cart items" className="w-12" />
+
+                    <p>{item.name}</p>
+                    <p>${item.price}</p>
+                    <p>{cartItems[item._id]}</p>
+                    <p>${item.price * cartItems[item._id]}</p>
+                    <p
+                      className="cursor-pointer"
+                      onClick={() => removeFromCart(item._id)}
+                    >
+                      X
+                    </p>
+                  </div>
+                  <hr className="bg-[#e2e2e2] border-none h-[1px]" />
                 </div>
-                <hr className="bg-[#e2e2e2] border-none h-[1px]" />
-              </div>
-            );
-          }
-        })}
+              );
+            }
+          })
+        )}
       </div>
 
       <div className="mt-20 flex justify-between gap-[max(12vw,20px)] max-[750px]:flex-col-reverse">
         <div className="flex-1 flex flex-col gap-5">
-          <h2 className="font-bold">Cart Totals</h2>
+          <h2 className="text-3xl font-semibold">Cart Totals</h2>
           <div>
             <div className="flex justify-between text-[#555]">
               <p>Subtotal</p>
@@ -61,16 +69,21 @@ const Cart = () => {
             <hr className="my-2.5 mx-0 border-0 bg-[#555] h-[1px]" />
             <div className="flex justify-between text-[#555]">
               <p>Delivery Fee</p>
-              <p>${2}</p>
+              <p>${getTotalCartAmount() === 0 ? 0 : 2}</p>
             </div>
             <hr className="my-2.5 mx-0 border-0 bg-[#555] h-[1px]" />
 
             <div className="flex justify-between">
               <b>Total</b>
-              <b>${getTotalCartAmount() + 2}</b>
+              <b>
+                ${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}
+              </b>
             </div>
           </div>
-          <button className="border-0 text-white bg-orange-400 w-[max(15vw,200px)] py-3 px-0 rounded-sm cursor-pointer">
+          <button
+            className="border-0 text-white bg-orange-400 w-[max(15vw,200px)] py-3 px-0 rounded-sm cursor-pointer"
+            onClick={() => navigate("/order")}
+          >
             Proceed to check out
           </button>
         </div>
