@@ -17,9 +17,28 @@ const Footer = () => {
             excepturi quisquam! Quasi!
           </p>
           <div className="flex gap-4">
-            <img src={assets.facebook_icon} alt="" />
-            <img src={assets.twitter_icon} alt="" />
-            <img src={assets.linkedin_icon} alt="" />
+            <a
+              href="https://facebook.com/khubaib2004.1978"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={assets.facebook_icon} alt="" />
+            </a>
+
+            <a
+              href="https://khubaib-portfolio-seven.vercel.app"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={assets.twitter_icon} alt="" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/khubaib-baacha/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={assets.linkedin_icon} alt="" />
+            </a>
           </div>
         </div>
 
@@ -36,7 +55,14 @@ const Footer = () => {
         <div className="flex flex-col items-start gap-5">
           <h2 className="text-white font-bold">GET IN TOUCH</h2>
           <ul>
-            <li className="mb-2.5 cursor-pointer">+92 316 212 6865</li>
+            <li className="mb-2.5 cursor-pointer">
+              <a
+                aria-label="Chat on WhatsApp"
+                href="https://wa.me/+923149784156?text=Hi!%20I'm%20interested%20in%20working%20with%20you%20on%20a%20project%20like%20your%20food%20ordering%20website."
+              >
+                +92 314 9784 156
+              </a>
+            </li>
             <li className="mb-2.5 cursor-pointer">tomato@gmail.com</li>
           </ul>
         </div>

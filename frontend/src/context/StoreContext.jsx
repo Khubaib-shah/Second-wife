@@ -14,7 +14,7 @@ const StoreContextProvider = ({ children }) => {
   }, [cartItems]);
 
   const addToCart = (itemId, name) => {
-    toast.success(name + "! " + "Nice! It's in your cart.");
+    toast.success(`${name} Nice! It's in your cart.`);
     setCartItems((prev) => ({
       ...prev,
       [itemId]: (prev[itemId] || 0) + 1,

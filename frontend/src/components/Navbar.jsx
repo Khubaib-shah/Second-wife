@@ -1,10 +1,11 @@
 import { useContext, useState } from "react";
 import { assets } from "../assets/assets";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { StoreContext } from "../context/StoreContext";
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
   const { getTotalCartAmount } = useContext(StoreContext);
+  const navigate = useNavigate();
 
   const navItems = ["home", "menu", "mobile-app", "contact-us"];
   const { pathname } = useLocation();
@@ -20,6 +21,7 @@ const Navbar = ({ setShowLogin }) => {
         src={assets.logo}
         alt="logo"
         className="w-36 max-[900px]:w-28 max-[1050px]:w-32"
+        onClick={() => navigate("/")}
       />
 
       <nav className="flex list-none gap-6 max-[750px]:hidden max-[900px]:gap-3.5 max-[1050px]:gap-5 max-[900px]:text-base max-[1050px]:text-[17px] text-lg">

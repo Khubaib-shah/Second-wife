@@ -1,9 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { StoreContext } from "../context/StoreContext";
+import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const PlaceOrder = () => {
-  const { getTotalCartAmount } = useContext(StoreContext);
+  const { setCartItems, getTotalCartAmount } = useContext(StoreContext);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,11 +18,44 @@ const PlaceOrder = () => {
     phoneNumber: "",
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    getTotalCartAmount() < 1
-      ? toast("Oops! Nothing in your cart yet.")
-      : toast.success("Thanks for your order! We're on it.");
+    if (!getTotalCartAmount()) {
+      toast("Oops! Nothing in your cart yet.");
+      return;
+    }
+    if (
+      !formData.firstName.trim() ||
+      !formData.emailAddress.trim() ||
+      !formData.street.trim() ||
+      !formData.phoneNumber.trim()
+    ) {
+      toast.error("Fields with * are Required");
+      return;
+    }
+    setLoading(true);
+
+    setTimeout(() => {
+      setLoading(false);
+      toast.success(`Thanks, ${formData.firstName}! Order placed.`);
+      navigate("/");
+      localStorage.setItem("cart", {});
+
+      setCartItems({});
+      setFormData({
+        firstName: "",
+        lastName: "",
+        emailAddress: "",
+        street: "",
+        city: "",
+        state: "",
+        zipCode: "",
+        country: "",
+        phoneNumber: "",
+      });
+    }, 2000);
 
     console.log(formData);
   };
@@ -28,7 +63,7 @@ const PlaceOrder = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-start justify-between gap-12 mt-24"
+      className="flex flex-col md:flex-row  items-center md:items-start justify-between gap-12 mt-24"
     >
       <div className="w-full max-w-custom place-order-left">
         <p className="text-3xl font-semibold mb-12">Delivery Information</p>
@@ -36,7 +71,7 @@ const PlaceOrder = () => {
         <div className="multi-fields">
           <input
             type="text"
-            placeholder="First name"
+            placeholder="First name *"
             value={formData.firstName}
             name="firstName"
             onChange={(e) =>
@@ -54,8 +89,8 @@ const PlaceOrder = () => {
           />
         </div>
         <input
-          type="text"
-          placeholder="Email address"
+          type="email"
+          placeholder="Email address *"
           value={formData.emailAddress}
           name="emailAddress"
           onChange={(e) =>
@@ -64,7 +99,7 @@ const PlaceOrder = () => {
         />
         <input
           type="text"
-          placeholder="Street"
+          placeholder="Street *"
           value={formData.street}
           name="street"
           onChange={(e) =>
@@ -114,7 +149,7 @@ const PlaceOrder = () => {
         </div>
         <input
           type="text"
-          placeholder="Phone"
+          placeholder="Phone *"
           value={formData.phoneNumber}
           name="phoneNumber"
           onChange={(e) =>
@@ -147,9 +182,12 @@ const PlaceOrder = () => {
           </div>
           <button
             type="submit"
-            className="border-0 text-white bg-orange-400 w-[max(15vw,200px)] py-3 px-0 rounded-sm cursor-pointer mt-7"
+            className={`border-0 text-white bg-orange-400 w-[max(15vw,200px)] py-3 px-0 rounded-sm cursor-pointer mt-7 ${
+              loading ? "opacity-65" : ""
+            } `}
+            disabled={loading}
           >
-            Proceed to Payment
+            {loading ? "Processing payment..." : "Proceed to Payment"}
           </button>
         </div>
       </div>

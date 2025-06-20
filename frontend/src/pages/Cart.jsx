@@ -27,7 +27,7 @@ const Cart = () => {
         <hr />
 
         {getTotalCartAmount() < 1 ? (
-          <h2>Start adding delicious items to your cart!</h2>
+          <h2>Start adding delicious Food to your cart!</h2>
         ) : (
           food_list.map((item, index) => {
             if (cartItems[item._id] > 0) {
